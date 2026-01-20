@@ -1,10 +1,10 @@
-// PAKSA MATIKAN VALIDASI SSL SECARA GLOBAL DI LEVEL PROSES
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-
 require('dotenv').config();
 const http = require('http');
 const https = require('https'); // <--- 1. Import ini
 const httpProxy = require('http-proxy');
+
+// PAKSA MATIKAN VALIDASI SSL SECARA GLOBAL DI LEVEL PROSES
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 const TARGET_URL = process.env.TARGET_URL;
 const PORT = process.env.PORT || 3000;
