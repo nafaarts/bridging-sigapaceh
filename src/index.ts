@@ -25,7 +25,7 @@ const httpsAgent = new https.Agent({
 const TARGET_API = process.env.TARGET_API || 'https://aceh.sigap.latih.id/bencana/korban';
 
 // Health check endpoint
-app.get('/', (req: Request, res: Response) => {
+app.get('/', (_: Request, res: Response) => {
   res.send('Sigap Bridging Service is running');
 });
 
@@ -52,6 +52,8 @@ app.post('/bencana/korban', async (req: Request, res: Response) => {
       console.error('Target API Error Response:', error.response.status, error.response.data);
       res.status(error.response.status).json(error.response.data);
     } else {
+      // Handle network errors or other unexpected cases
+      console.error('Network Error:', error.message);
       res.status(500).json({ error: 'Internal Server Error', message: error.message });
     }
   }

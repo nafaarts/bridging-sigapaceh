@@ -1,10 +1,11 @@
 version: '3.8'
 
 services:
-  app:
+  sigap:
+    container_name: sigap-bridging
     build: .
     ports:
-      - "3000:3000"
+      - "4001:3000"
     environment:
       - PORT=3000
     restart: always
