@@ -1,10 +1,6 @@
 const http = require('http');
-const https = require('https'); // <--- 1. Import ini
 const httpProxy = require('http-proxy');
 require('dotenv').config();
-
-// PAKSA MATIKAN VALIDASI SSL SECARA GLOBAL DI LEVEL PROSES
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 const TARGET_URL = process.env.TARGET_URL;
 const PORT = process.env.PORT || 3000;
@@ -14,17 +10,9 @@ if (!TARGET_URL) {
     process.exit(1);
 }
 
-// 2. Buat Agent Khusus yang 'bandel' (ignore SSL)
-const secureAgent = new https.Agent({
-    rejectUnauthorized: false
-});
-
-// 3. Masukkan agent ini ke config proxy
 const proxy = httpProxy.createProxyServer({
     target: TARGET_URL,
     changeOrigin: true,
-    secure: false, // Tetap pasang ini sebagai cadangan
-    agent: secureAgent, // <--- PASANG AGENT DI SINI
 });
 
 proxy.on('error', function (err, req, res) {
@@ -36,11 +24,8 @@ proxy.on('error', function (err, req, res) {
 const server = http.createServer(function (req, res) {
     console.log(`Meneruskan request: ${req.method} ${req.url}`);
 
-    // Pastikan agent juga dipassing saat web request (untuk memastikan)
     proxy.web(req, res, {
         target: TARGET_URL,
-        agent: secureAgent,
-        ignorePath: true
     });
 });
 
