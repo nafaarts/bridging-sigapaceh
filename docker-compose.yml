@@ -2,10 +2,10 @@ version: '3.8'
 
 services:
   sigap:
-    container_name: sigap-bridging
+    container_name: sigap-proxy
     build: .
     ports:
       - "4001:3000"
     environment:
-      - PORT=3000
+      - TARGET_API=${TARGET_API}
     restart: always

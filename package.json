@@ -1,31 +1,25 @@
 {
-  "name": "sigap-bridging",
+  "name": "sigap-proxy",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "node dist/index.js",
-    "dev": "nodemon src/index.ts",
-    "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "homepage": "https://github.com/nafaarts/bridging-sigapaceh#readme",
+  "bugs": {
+    "url": "https://github.com/nafaarts/bridging-sigapaceh/issues"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nafaarts/bridging-sigapaceh.git"
+  },
   "license": "ISC",
+  "author": "",
   "type": "commonjs",
-  "dependencies": {
-    "axios": "^1.13.2",
-    "cors": "^2.8.5",
-    "dotenv": "^17.2.3",
-    "express": "^5.2.1",
-    "helmet": "^8.1.0"
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "devDependencies": {
-    "@types/cors": "^2.8.19",
-    "@types/express": "^5.0.6",
-    "@types/node": "^25.0.9",
-    "nodemon": "^3.1.11",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "http-proxy": "^1.18.1"
   }
 }
