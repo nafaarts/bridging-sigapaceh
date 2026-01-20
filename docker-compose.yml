@@ -7,6 +7,6 @@ services:
     ports:
       - "4001:3000"
     environment:
-      - TARGET_API=${TARGET_API}
+      - TARGET_URL=${TARGET_URL}
       - NODE_TLS_REJECT_UNAUTHORIZED=0
     restart: always
