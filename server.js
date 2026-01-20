@@ -26,7 +26,11 @@ const server = http.createServer(function (req, res) {
 
     // FUNGSI UTAMA: Meneruskan (pipe) request ke target
     // changeOrigin: true dibutuhkan jika target menggunakan Virtual Hosting (vhost)
-    proxy.web(req, res, { target: TARGET_URL, changeOrigin: true });
+    proxy.web(req, res, {
+        target: TARGET_URL,
+        changeOrigin: true,
+        secure: false  // <--- TAMBAHKAN INI (Bypass SSL Validation)
+    });
 });
 
 console.log(`Proxy server berjalan di port 3000, meneruskan ke ${TARGET_URL}`);
