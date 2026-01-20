@@ -39,7 +39,8 @@ const server = http.createServer(function (req, res) {
     // Pastikan agent juga dipassing saat web request (untuk memastikan)
     proxy.web(req, res, {
         target: TARGET_URL,
-        agent: secureAgent
+        agent: secureAgent,
+        ignorePath: true
     });
 });
 
